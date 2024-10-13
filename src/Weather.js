@@ -8,13 +8,13 @@ export default function Weather(props) {
     console.log(response.data);
     setWeatherData({
       ready: true,
-      temperature: response.data.main.temp,
-      humidity: response.data.main.humidity,
+      temperature: response.data.temperature.current,
+      humidity: response.data.temperature.humidity,
       date: " Wednesday 07:00",
-      description: response.data.weather[0].description,
+      description: response.data.condition.description,
       iconUrl: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
       wind: response.data.wind.speed,
-      city: response.data.name,
+      city: response.data.city,
     });
   }
 
@@ -67,9 +67,9 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "a710bd8bd76400c9658ef649d9e81728";
+    const apiKey = "1a747f2d7ac32a100bt13fab8776o6ca";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=metric`;
-    axios.get(apiKey).then(handleResponse);
+    axios.get(apiUrl).then(handleResponse);
 
     return "Loading...";
   }
